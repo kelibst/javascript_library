@@ -3,19 +3,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/style.">
 <title>Nerd's Library</title>
 </head>
-<body>
-    <div class="container">
-        
-    </div>
+<<body>
+  <div class="container">
+    <h1 class="projectTitle">MyLibrary</h1>
 
+    <div class="books"></div>
+
+    <div class="footer">
+      <p>A project by Kelli and Lucky. C2020</p>
+
+    </div>
+  </div>
+
+  <div class="modal" id="myModal" > 
+    <div class="modalContent">
+      <span class="closeBtn disable-select">&times;</span>
+
+      <form class="modalForm"> 
+        <div class="form-container" id="title-form">
+          <input type=text name="title" class="input-container" id="title-input" autocomplete="off" required>
+          <label for="title" class="label-container" id="title-label">
+            <span class="span-container" id="title-span">Title</span>
+          </label>
+        </div>
+
+        <div class="form-container" id="author-form">
+          <input type=text name="author" class="input-container" id="author-input" autocomplete="off" required>
+          <label for="author" class="label-container" id="title-label">
+            <span class="span-container" id="author-span">Author</span>
+          </label>
+        </div>
+
+        <div class="form-container" id="pages-form">
+          <input type=number name="pages" class="input-container" id="pages-input" autocomplete="off" required>
+          <label for="pages" class="label-container" id="pages-label">
+            <span class="span-container" id="pages-span">Pages</span>
+          </label>
+        </div>
+  
+        <div class="read-container" id="read-form">
+          <label>Already read?</label>
+          <input type="checkbox" class="input-container-checkbox" id="read-input">
+        </div>
+
+        <div class="submit-container" id="submit-form">
+          <button type="submit" class="submit-button disable-select">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
 <!-- JS, Popper.js, and jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <script src="assets/scripts/book.js"></script>
 </body>
 </html>
+

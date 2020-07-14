@@ -1,4 +1,4 @@
-function Book (title, name, pages, read_status){
+function Book (title, name, pages, read_status=false){
     this.title = title;
     this.name = name;
     this.pages = pages;
@@ -9,12 +9,17 @@ function Book (title, name, pages, read_status){
 Book.prototype.info = function(){
     read = "";
     if (this.read_status) {
-        var read= "You read this book"
+        var read= "Read!"
+        return read;
     }else{
-        var read = "not read yet"
+        var read = "Not Read!"
+        return read;
     }
 
     return (`${this.title} by ${this.name}, ${this.pages}, ${read} `)
+}
+Book.prototype.toggleStatus = function(){
+    return this.read_status = !this.read_status;
 }
 
 var book_list = [
@@ -36,13 +41,13 @@ var render = function(template, node, container = document.createElement("div") 
 book_list.forEach(function(book){
     
 var node = document.getElementById("title");
-    var template = `<div class="card m-4 text-center">
-                    <div class="card-body">
+    var template = `<div class="card m-4 p-relative text-center">
+                    <div class="card-body mt-5">
                     <h5 class="card-title">${book.name}</h5>
                     <p class="card-text">${book.title}</p>
                     
                     <p class="card-text text-center"><span class="font-weight-bolder">Number of pages:  ${book.pages}</span></p>
-                
+                    <a href="#" class="btn btn-info ptl-0">${book.info()}</a>
                     <a href="#" class="btn btn-danger remove w-100">Remove Book</a>
                     </div>
                 </div>`;
@@ -59,13 +64,15 @@ button.addEventListener('click', function(e){
     if(form.book_title.value.length < 3 || form.author_name.value.length < 3){
         errors.push("Sorry Book title and Author name should be at least 3 characters long!")
     }
-    book_list.push(new Book(form.book_title.value, form.author_name.value, form.book_pages.value, form.book_status.value),);
+    book_list.push(new Book(form.book_title.value, form.author_name.value, form.book_pages.value, form.book_status.value));
     
     var node = document.getElementById("title");
+    var AddBook = new Book(form.book_title.value, form.author_name.value, form.book_pages.value, form.book_status.value);
     var template = `<div class="card text-center m-4">
-                    <div class="card-body">
+                    <div class="card-body mt-5">
                     <h5 class="card-title">${form.author_name.value}</h5>
                     <p class="card-text">${form.book_title.value}</p>
+                    <a href="#" class="btn btn-info ptl-0">${AddBook.info()}</a>
                     <p class="card-text text-center"><span class="font-weight-bolder">Number of pages:  ${form.book_pages.value}</span></p>
                   
                     <a href="#" class="btn btn-danger remove w-100">Remove Book</a>
@@ -92,6 +99,22 @@ shelve.addEventListener('click', function(e){
     
         console.log(book_list);
      e.target.parentElement.remove();
+    }
+
+    if (e.target.classList.contains("ptl-0")){
+        var text = e.target.parentElement.children[1].innerText;
+       
+        book_reading = book_list.find(function(books){
+            if(books.title == text){
+                books.read_status = !books.read_status;
+                console.log(books)
+                e.target.innerText = books.info();
+                return books;        
+            }
+            
+            
+        });
+        
     }
 })
 

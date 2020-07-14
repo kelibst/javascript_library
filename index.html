@@ -7,8 +7,44 @@
 <title>Nerd's Library</title>
 </head>
 <body>
-    <div class="container">
-        
+    <div class="container my-5 py-5">
+        <div class="container-fluid">
+            
+            <form class="book_input">
+                <h1 class="text-center font-weight-bolder">Add a new book to your library</h1>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="book_title">Book title</label>
+                    <input type="text" class="form-control" name="book_title" id="book_title">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="author_name">Author Name:</label>
+                    <input type="text" class="form-control" name="author_name" id="author_name">
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label for="book_pages">Number of Pages</label>
+                    <input type="text" class="form-control" name="book_pages" id="book_pages">
+                </div>
+             
+                <div class="form-row my-5">
+                 
+                  <div class="form-group col-12 ">
+                    <label for="inputState">Status</label>
+                    <select id="inputState" name="book_status" class="form-control">
+                      <option value="false" selected>Not Read</option>
+                      <option value="true">Read</option>
+                    </select>
+                  </div>
+                </div>
+                <button type="submit" name="but" id="but" class="btn w-100 my-5 btn-primary">Add Book</button>
+              </form>
+        </div>
+
+        <!-- output the content of the notes -->
+        <div class="book-lists">
+            <div id="title" class="row"></div>
+        </div>
     </div>
 
 

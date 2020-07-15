@@ -6,3 +6,16 @@
   top: 0;
   left: 0;
 }
+.form-container{
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  background: #040000c7;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+.bg-custom{
+  background: #f8f9fa;
+}

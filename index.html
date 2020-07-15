@@ -8,11 +8,12 @@
 <title>Nerd's Library</title>
 </head>
 <body>
-    <div class="container my-5 py-5">
-        <div class="container-fluid">
+  <div class="form-container d-none">
+
+        <div class="mx-auto py-5 bg-custom rounded  col-md-6">
             
             <form class="book_input">
-                <h1 class="text-center font-weight-bolder">Add a new book to your library</h1>
+                <h3 class="text-center font-weight-bolder">Add a new book to your library</h3>
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="book_title">Book title</label>
@@ -41,11 +42,15 @@
                 <button type="submit" name="but" id="but" class="btn w-100 my-5 btn-primary">Add Book</button>
               </form>
         </div>
-
+</div>
+    <div class="container my-5 py-5">
+        <h1 class="font-weight-bolder text-center mb-5">Welcome To the Nerd's Library</h1>
         <!-- output the content of the notes -->
-        <div class="book-lists">
-            <div id="title" class="row"></div>
+        <div class="book-lists my-4">
+            <h4 class="font-weight-bolder text-center">List of current Books and their Read Status</h4>
+            <div id="title" class="row justify-content-center"></div>
         </div>
+        <a href="#" class="btn btn-success add_note">Add new Note</a>
     </div>
 
 

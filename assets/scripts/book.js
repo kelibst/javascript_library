@@ -1,3 +1,6 @@
+add_note = document.querySelector('.add_note');
+form_container = document.querySelector('.form-container');
+
 function Book (title, name, pages, read_status=false){
     this.title = title;
     this.name = name;
@@ -89,6 +92,7 @@ button.addEventListener('click', function(e){
                 </div>`;
     render(template,node)
     form.reset();
+    form_container.classList.remove("d-flex");
 })
 
 shelve = document.querySelector('.book-lists');
@@ -128,3 +132,16 @@ shelve.addEventListener('click', function(e){
     }
 })
 
+add_note.addEventListener('click', function(e) {
+    
+    form_container.classList.add("d-flex")
+    
+});
+form_container.addEventListener('click', function(e){
+ 
+   if (e.target.classList.contains("form-container")){
+       form_container.classList.remove("d-flex");
+   }
+    
+    e.stopImmediatePropagation()
+})

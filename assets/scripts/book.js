@@ -22,12 +22,19 @@ Book.prototype.toggleStatus = function(){
     return this.read_status = !this.read_status;
 }
 
-var book_list = [
-    new Book('Lord of the Rings', 'JRR Tolkien', 300, true),
-    new Book('Neuromante', 'William Gibson', 200, true),
-    new Book('The Call of The Wild', 'Jack London', '80'),
-    new Book("Hitchiker's Guide to The Galaxy", 'Douglas Adams', '250', true),
+
+
+if(localStorage.length < 1){
+    var book_list = [
+    {title: 'Lord of the Rings', name:'JRR Tolkien', pages: 300, read_status: true},
+    {title: 'Neuromante', name: 'William Gibson', pages: 200, read_status: true},
+    {title: 'The Call of The Wild', name: 'Jack London', pages: '80'},
+    {title: "Hitchiker's Guide to The Galaxy", name: 'Douglas Adams', pages: '250', read_status: true},
 ]
+}else{
+    var stored_list = localStorage.getItem('book_list')
+    var book_list = JSON.parse(stored_list);
+}
 
 
 var render = function(template, node, container = document.createElement("div") ){
@@ -39,15 +46,16 @@ var render = function(template, node, container = document.createElement("div") 
 
 
 book_list.forEach(function(book){
-    
+ 
+  book_exec = new Book(book.title,book.name,book.pages,book.read_status);  
 var node = document.getElementById("title");
     var template = `<div class="card m-4 p-relative text-center">
                     <div class="card-body mt-5">
-                    <h5 class="card-title">${book.name}</h5>
-                    <p class="card-text">${book.title}</p>
+                    <h5 class="card-title">${book_exec.name}</h5>
+                    <p class="card-text">${book_exec.title}</p>
                     
-                    <p class="card-text text-center"><span class="font-weight-bolder">Number of pages:  ${book.pages}</span></p>
-                    <a href="#" class="btn btn-info ptl-0">${book.info()}</a>
+                    <p class="card-text text-center"><span class="font-weight-bolder">Number of pages:  ${book_exec.pages}</span></p>
+                    <a href="#" class="btn btn-info ptl-0">${book_exec.info()}</a>
                     <a href="#" class="btn btn-danger remove w-100">Remove Book</a>
                     </div>
                 </div>`;
@@ -64,7 +72,8 @@ button.addEventListener('click', function(e){
     if(form.book_title.value.length < 3 || form.author_name.value.length < 3){
         errors.push("Sorry Book title and Author name should be at least 3 characters long!")
     }
-    book_list.push(new Book(form.book_title.value, form.author_name.value, form.book_pages.value, form.book_status.value));
+    book_list.push({title: form.book_title.value, name: form.author_name.value, pages: form.book_pages.value, read_status: form.book_status.value});
+    localStorage.setItem('book_list', JSON.stringify(book_list));
     
     var node = document.getElementById("title");
     var AddBook = new Book(form.book_title.value, form.author_name.value, form.book_pages.value, form.book_status.value);
@@ -87,7 +96,7 @@ shelve = document.querySelector('.book-lists');
 shelve.addEventListener('click', function(e){
     if (e.target.classList.contains("remove")){
         var text = e.target.parentElement.children[1].innerText;
-       
+        alert('You are about to remove this book!')
         book_list = book_list.filter(function(books){
             if(books.title != text){
         
@@ -96,8 +105,8 @@ shelve.addEventListener('click', function(e){
             
             
         });
-    
-        console.log(book_list);
+   
+        localStorage.setItem('book_list', JSON.stringify(book_list));
      e.target.parentElement.remove();
     }
 
@@ -107,8 +116,10 @@ shelve.addEventListener('click', function(e){
         book_reading = book_list.find(function(books){
             if(books.title == text){
                 books.read_status = !books.read_status;
-            
-                e.target.innerText = books.info();
+                run_book = new Book(books.title, books.name, books.pages, books.read_status)
+                e.target.innerText = run_book.info();
+                alert('You are about to change the read status of this book!')
+                localStorage.setItem('book_list', JSON.stringify(book_list));
                 return books;        
             }
           

@@ -72,10 +72,10 @@ button = document.querySelector("button")
 
 button.addEventListener('click', function(e){
     e.preventDefault();
-    if(form.book_title.value.length < 3 || form.author_name.value.length < 3){
-        errors.push("Sorry Book title and Author name should be at least 3 characters long!")
-    }
-    book_list.push({title: form.book_title.value, name: form.author_name.value, pages: form.book_pages.value, read_status: form.book_status.value});
+    if(form.book_title.value.length < 3 || form.author_name.value.length < 3 || book_list.includes(form.book_title)){
+        alert("Sorry Book title and Author name should be at least 3 characters long!")
+    }else{
+            book_list.push({title: form.book_title.value, name: form.author_name.value, pages: form.book_pages.value, read_status: form.book_status.value});
     localStorage.setItem('book_list', JSON.stringify(book_list));
     
     var node = document.getElementById("title");
@@ -93,6 +93,8 @@ button.addEventListener('click', function(e){
     render(template,node)
     form.reset();
     form_container.classList.remove("d-flex");
+    }
+
 })
 
 shelve = document.querySelector('.book-lists');

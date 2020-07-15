@@ -1,39 +1,73 @@
+<!--
+*** Thanks for checking out this README Template. If you have a suggestion that would
+*** make this better, please fork the repo and create a pull request or simply open
+*** an issue with the tag "enhancement".
+*** Thanks again! Now go create something AMAZING! :D
+-->
+
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+[![Contributors][contributors-shield]][contributors-url] 
+[![Forks][forks-shield]][forks-url] 
+[![Stargazers][stars-shield]][stars-url] 
+[![Issues][issues-shield]][issues-url] 
+![Hireable](https://cdn.rawgit.com/hiendv/hireable/master/styles/default/yes.svg) 
+
 # Js Library
 
-In this project, we will be building a library.
+> In this project, we will be building a library. 
+Users can: 
+- See list of Books
+- Delete books from the library.
+- Add books to the library.
+- Toggle the read status of the books in the library.
+- Uses localStorage to store data.
 
 #  Screenshot
-
+![screenshot](./assets/images/Screenshot.png)
 
 # Live Demo
-
+[Live Demo Link](https://condescending-clarke-682f3a.netlify.app/)
 
 # Built With
 
 - JavaScript
 - HTML5
+- BOOTSTRAP
 - CSS3
 
-# Requirements
+### Usage
 
-- Keep your code clean.
-- Do not commit console.log to your repo. - It’s ugly, it kills performance and it can make confidential data be visible in the browser tools.
-- Keep the number of changes/updates to the DOM as low as possible, they are very expensive for the browser.
-- Keep the application logic separated from DOM manipulation tasks.
-- Keep all the styling logic in CSS files. If you use node modules
-- lock files should be in the repository to avoid problems with future versions of the dependencies. If you use ES6
-- use object destructuring to get the values from an object. This way you can avoid repeating a lot of code.
+- Click the Live Demo link and enjoy our website.
 
-# Setup
+### Prerequisites
 
-- Clone the repository on your local machine
-- Cd into the folder
-- Open index.html file
+- A modern browser, up to date.
 
-# Install
-- Install VSCode or any code editor you like
 
 # Authors
+
+## Author
+
+👤 **Kelly Booster**
+
+- Github: [@kelibst](https://github.com/kelibst)
+- Twitter: [@keli_booster](https://twitter.com/keli_booster)
+- Linkedin: [Kekeli (Jiresse) Dogbevi
+](https://www.linkedin.com/in/kekeli-dogbevi-jiresse/)
+
+👤 **Author2**
+Aremu Lucky
+
+- Github: [@githubhandle](https://github.com/Luckyaremu)
+- Twitter: [@twitterhandle](@luckyaremu)
+- Linkedin: [linkedin]()
 
 # 🤝 Contributing
 Contributions, issues and feature requests are welcome!
@@ -42,3 +76,5 @@ Feel free to check the issues page
 
 # Show your support
 Give a ⭐️ if you like this project!
+
+This project is [MIT](lic.url) licensed.

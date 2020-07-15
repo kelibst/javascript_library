@@ -4,7 +4,7 @@ const formcontainer = document.querySelector('.form-container');
 
 const form = document.querySelector('form');
 const button = document.querySelector('button');
-
+let book_list = [];
 function Book(title, name, pages, readstatus = false) {
   this.title = title;
   this.name = name;
@@ -26,8 +26,9 @@ Book.prototype.toggleStatus = function () {
   this.readstatus = !this.readstatus;
 };
 
+
 if (localStorage.length < 1) {
-  var book_list = [
+  book_list = [
     {
       title: 'Lord of the Rings', name: 'JRR Tolkien', pages: 300, readstatus: true,
     },
@@ -41,7 +42,7 @@ if (localStorage.length < 1) {
   ];
 } else {
   const stored_list = localStorage.getItem('book_list');
-  var book_list = JSON.parse(stored_list);
+  book_list = JSON.parse(stored_list);
 }
 
 
@@ -52,38 +53,42 @@ const render = function (template, node, container = document.createElement('div
 
 
 book_list.forEach((book) => {
-  book_exec = new Book(book.title, book.name, book.pages, book.readstatus);
+  const bookexec = new Book(book.title, book.name, book.pages, book.readstatus);
   const node = document.getElementById('title');
   const template = `<div class="card m-4 p-relative text-center">
                     <div class="card-body mt-5">
-                    <h5 class="card-title">${book_exec.name}</h5>
-                    <p class="card-text">${book_exec.title}</p>
+                    <h5 class="card-title">${bookexec.name}</h5>
+                    <p class="card-text">${bookexec.title}</p>
                     
-                    <p class="card-text text-center"><span class="font-weight-bolder">Number of pages:  ${book_exec.pages}</span></p>
-                    <a href="#" class="btn btn-info ptl-0">${book_exec.info()}</a>
+                    <p class="card-text text-center"><span class="font-weight-bolder">Number of pages:  ${bookexec.pages}</span></p>
+                    <a href="#" class="btn btn-info ptl-0">${bookexec.info()}</a>
                     <a href="#" class="btn btn-danger remove w-100">Remove Book</a>
                     </div>
                 </div>`;
   render(template, node);
 });
 
-const errors = [];
-
 
 button.addEventListener('click', (e) => {
   e.preventDefault();
 
 
-  if (form.book_title.value.length < 3 || form.author_name.value.length < 3 || book_list.includes(form.book_title.value)) {
+  if (form.book_title.value.length < 3 || form.author_name.value.length < 3) {
     alert('Sorry Book title and Author name should be at least 3 characters long!');
   } else {
     book_list.push({
-      title: form.book_title.value, name: form.author_name.value, pages: form.book_pages.value, readstatus: form.book_status.value,
+      title: form.book_title.value,
+      name: form.author_name.value,
+      pages: form.book_pages.value,
+      readstatus: form.book_status.value,
     });
     localStorage.setItem('book_list', JSON.stringify(book_list));
 
     const node = document.getElementById('title');
-    const AddBook = new Book(form.book_title.value, form.author_name.value, form.book_pages.value, form.book_status.value);
+    const AddBook = new Book(form.book_title.value,
+      form.author_name.value,
+      form.book_pages.value,
+      form.book_status.value);
     const template = `<div class="card text-center m-4">
                     <div class="card-body mt-5">
                     <h5 class="card-title">${form.author_name.value}</h5>
@@ -100,14 +105,14 @@ button.addEventListener('click', (e) => {
   }
 });
 
-shelve = document.querySelector('.book-lists');
+const shelve = document.querySelector('.book-lists');
 
 shelve.addEventListener('click', (e) => {
   if (e.target.classList.contains('remove')) {
-    var text = e.target.parentElement.children[1].innerText;
+    const text = e.target.parentElement.children[1].innerText;
     alert('You are about to remove this book!');
     book_list = book_list.filter((books) => {
-      if (books.title != text) {
+      if (books.title !== text) {
         return books;
       }
     });
@@ -118,22 +123,21 @@ shelve.addEventListener('click', (e) => {
   }
 
   if (e.target.classList.contains('ptl-0')) {
-    var text = e.target.parentElement.children[1].innerText;
+    const text = e.target.parentElement.children[1].innerText;
 
-    book_reading = book_list.find((books) => {
-      if (books.title == text) {
+    book_list.find((books) => {
+      if (books.title === text) {
         books.readstatus = !books.readstatus;
-        run_book = new Book(books.title, books.name, books.pages, books.readstatus);
-        e.target.innerText = run_book.info();
-        alert('You are about to change the read status of this book!');
+        const runbook = new Book(books.title, books.name, books.pages, books.readstatus);
+        e.target.innerText = runbook.info();
+
         localStorage.setItem('book_list', JSON.stringify(book_list));
-        return books;
       }
     });
   }
 });
 
-addnote.addEventListener('click', (e) => {
+addnote.addEventListener('click', () => {
   formcontainer.classList.add('d-flex');
 });
 formcontainer.addEventListener('click', (e) => {

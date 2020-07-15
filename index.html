@@ -3,18 +3,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
-    <link rel="stylesheet" href="assets/style.">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" href="assets/style.css">
 <title>Nerd's Library</title>
 </head>
 <body>
-  <div class="container">
-    <h1 class="projectTitle">MyLibrary</h1>
+  <div class="form-container d-none">
 
-    <div class="books"></div>
-
-    <div class="footer">
-      <p>A project by Kelli and Lucky. C2020</p>
-
+        <div class="mx-auto py-5 bg-custom rounded  col-md-6">
+            
+            <form class="book_input">
+                <h3 class="text-center font-weight-bolder">Add a new book to your library</h3>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="book_title">Book title</label>
+                    <input type="text" class="form-control" name="book_title" id="book_title">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="author_name">Author Name:</label>
+                    <input type="text" class="form-control" name="author_name" id="author_name">
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label for="book_pages">Number of Pages</label>
+                    <input type="text" class="form-control" name="book_pages" id="book_pages">
+                </div>
+             
+                <div class="form-row my-5">
+                 
+                  <div class="form-group col-12 ">
+                    <label for="inputState">Status</label>
+                    <select id="inputState" name="book_status" class="form-control">
+                      <option value="false" selected>Not Read</option>
+                      <option value="true">Read</option>
+                    </select>
+                  </div>
+                </div>
+                <button type="submit" name="but" id="but" class="btn w-100 my-5 btn-primary">Add Book</button>
+              </form>
+        </div>
+</div>
+    <div class="container my-5 py-5">
+        <h1 class="font-weight-bolder text-center mb-5">Welcome To the Nerd's Library</h1>
+        <!-- output the content of the notes -->
+        <div class="book-lists my-4">
+            <h4 class="font-weight-bolder text-center">List of current Books and their Read Status</h4>
+            <div class="form-row text-center">
+              <div class="col-12">
+                <a href="#" class="btn btn-success add_note">Add new Note</a>
+              </div>
+           </div>
+            <div id="title" class="row justify-content-center"> </div>
+            
+        </div>
     </div>
   </div>
 

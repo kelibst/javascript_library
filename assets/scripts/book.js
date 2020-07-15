@@ -1,3 +1,9 @@
+/* eslint-disable func-names */
+/* eslint-disable camelcase */
+/* eslint-disable no-alert */
+/* eslint-disable array-callback-return */
+/* eslint-disable  consistent-return */
+
 
 const addnote = document.querySelector('.add_note');
 const formcontainer = document.querySelector('.form-container');
@@ -147,3 +153,9 @@ formcontainer.addEventListener('click', (e) => {
 
   e.stopImmediatePropagation();
 });
+
+/* eslint-enable func-names */
+/* eslint-enable camelcase */
+/* eslint-enable no-alert */
+/* eslint-enable array-callback-return */
+/* eslint-enable  consistent-return */

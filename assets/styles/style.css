@@ -1,12 +1,14 @@
-.p-relative{
+.p-relative {
   position: relative;
 }
-.ptl-0{
+
+.ptl-0 {
   position: absolute;
   top: 0;
   left: 0;
 }
-.form-container{
+
+.form-container {
   width: 100vw;
   height: 100vh;
   align-items: center;
@@ -16,6 +18,7 @@
   left: 0;
   z-index: 100;
 }
-.bg-custom{
+
+.bg-custom {
   background: #f8f9fa;
 }

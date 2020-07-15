@@ -107,12 +107,11 @@ shelve.addEventListener('click', function(e){
         book_reading = book_list.find(function(books){
             if(books.title == text){
                 books.read_status = !books.read_status;
-                console.log(books)
+            
                 e.target.innerText = books.info();
                 return books;        
             }
-            
-            
+          
         });
         
     }

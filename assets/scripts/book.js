@@ -10,7 +10,7 @@ const formcontainer = document.querySelector('.form-container');
 
 const form = document.querySelector('form');
 const button = document.querySelector('button');
-let book_list = [];
+let booklist = [];
 function Book(title, name, pages, readstatus = false) {
   this.title = title;
   this.name = name;
@@ -34,7 +34,7 @@ Book.prototype.toggleStatus = function () {
 
 
 if (localStorage.length < 1) {
-  book_list = [
+  booklist = [
     {
       title: 'Lord of the Rings', name: 'JRR Tolkien', pages: 300, readstatus: true,
     },
@@ -47,8 +47,8 @@ if (localStorage.length < 1) {
     },
   ];
 } else {
-  const stored_list = localStorage.getItem('book_list');
-  book_list = JSON.parse(stored_list);
+  const storedlist = localStorage.getItem('booklist');
+  booklist = JSON.parse(storedlist);
 }
 
 
@@ -58,8 +58,8 @@ const render = function (template, node, container = document.createElement('div
 };
 
 
-book_list.forEach((book) => {
-  const bookexec = new Book(book.title, book.name, book.pages, book.readstatus);
+booklist.forEach((book) => {
+  const bookexec = new Book(book.title.trim(), book.name.trim(), book.pages, book.readstatus);
   const node = document.getElementById('title');
   const template = `<div class="card m-4 p-relative text-center">
                     <div class="card-body mt-5">
@@ -82,17 +82,17 @@ button.addEventListener('click', (e) => {
   if (form.book_title.value.length < 3 || form.author_name.value.length < 3) {
     alert('Sorry Book title and Author name should be at least 3 characters long!');
   } else {
-    book_list.push({
-      title: form.book_title.value,
-      name: form.author_name.value,
+    booklist.push({
+      title: form.book_title.value.trim(),
+      name: form.author_name.value.trim(),
       pages: form.book_pages.value,
       readstatus: form.book_status.value,
     });
-    localStorage.setItem('book_list', JSON.stringify(book_list));
+    localStorage.setItem('booklist', JSON.stringify(booklist));
 
     const node = document.getElementById('title');
-    const AddBook = new Book(form.book_title.value,
-      form.author_name.value,
+    const AddBook = new Book(form.book_title.value.trim(),
+      form.author_name.value.trim(),
       form.book_pages.value,
       form.book_status.value);
     const template = `<div class="card text-center m-4">
@@ -117,27 +117,27 @@ shelve.addEventListener('click', (e) => {
   if (e.target.classList.contains('remove')) {
     const text = e.target.parentElement.children[1].innerText;
     alert('You are about to remove this book!');
-    book_list = book_list.filter((books) => {
+    booklist = booklist.filter((books) => {
       if (books.title !== text) {
         return books;
       }
     });
 
 
-    localStorage.setItem('book_list', JSON.stringify(book_list));
+    localStorage.setItem('booklist', JSON.stringify(booklist));
     e.target.parentElement.remove();
   }
 
   if (e.target.classList.contains('ptl-0')) {
     const text = e.target.parentElement.children[1].innerText;
 
-    book_list.find((books) => {
+    booklist.find((books) => {
       if (books.title === text) {
         books.readstatus = !books.readstatus;
         const runbook = new Book(books.title, books.name, books.pages, books.readstatus);
         e.target.innerText = runbook.info();
 
-        localStorage.setItem('book_list', JSON.stringify(book_list));
+        localStorage.setItem('booklist', JSON.stringify(booklist));
       }
     });
   }

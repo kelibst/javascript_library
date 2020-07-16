@@ -4,7 +4,7 @@ const formcontainer = document.querySelector('.form-container');
 const formErrors = document.querySelector('.formErrorMessage');
 
 const form = document.querySelector('form');
-let retError = "";
+const retError = '';
 const button = document.querySelector('button');
 let booklist = [];
 function Book(title, name, pages, readstatus = false) {
@@ -49,7 +49,7 @@ if (localStorage.length < 1) {
 
 
 const render = function render(template, node, container = document.createElement('div')) {
-  container.classList.add('col-md-4')
+  container.classList.add('col-md-4');
   container.innerHTML = template;
   node.appendChild(container);
 };
@@ -138,9 +138,8 @@ shelve.addEventListener('click', (e) => {
     booklist = booklist.filter((books) => {
       if (books.title !== text) {
         return books;
-      }else{
-        return retError;
       }
+      return retError;
     });
 
 
@@ -154,9 +153,8 @@ shelve.addEventListener('click', (e) => {
     const stateLog = booklist.find((books) => {
       if (books.title === text) {
         return books;
-      }else{
-        return retError;
       }
+      return retError;
     });
 
     stateLog.readstatus = !stateLog.readstatus;

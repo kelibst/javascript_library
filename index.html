@@ -17,16 +17,19 @@
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="book_title">Book title</label>
-                    <input type="text" class="form-control" name="book_title" id="book_title">
+                    <input type="text" class="form-control" name="book_title" id="book_title" required minlength="3" maxlength="300">
+                    <p class="text-danger error1"></p>
                   </div>
                   <div class="form-group col-md-6">
                     <label for="author_name">Author Name:</label>
-                    <input type="text" class="form-control" name="author_name" id="author_name">
+                    <input type="text" class="form-control" name="author_name" id="author_name" required minlength="3" maxlength="200">
+                    <p class="text-danger error2"></p>
                   </div>
                 </div>
                 <div class="form-group">
                     <label for="book_pages">Number of Pages</label>
-                    <input type="text" class="form-control" name="book_pages" id="book_pages">
+                    <input type="number" class="form-control" name="book_pages" id="book_pages" required minlength="1" maxlength="4">
+                    <p class="text-danger error3"></p>
                 </div>
              
                 <div class="form-row my-5">
@@ -41,6 +44,7 @@
                 </div>
                 <button type="submit" name="but" id="but" class="btn w-100 my-5 btn-primary">Add Book</button>
               </form>
+              <h4 class="text-center text-danger formErrorMessage d-none">Some field's in this form are not valid</h4>
         </div>
 </div>
     <div class="container my-5 py-5">

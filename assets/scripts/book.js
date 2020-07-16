@@ -1,14 +1,10 @@
-/* eslint-disable func-names */
-/* eslint-disable camelcase */
-/* eslint-disable no-alert */
-/* eslint-disable array-callback-return */
-/* eslint-disable  consistent-return */
-
 
 const addnote = document.querySelector('.add_note');
 const formcontainer = document.querySelector('.form-container');
+const formErrors = document.querySelector('.formErrorMessage');
 
 const form = document.querySelector('form');
+const retError = '';
 const button = document.querySelector('button');
 let booklist = [];
 function Book(title, name, pages, readstatus = false) {
@@ -20,7 +16,7 @@ function Book(title, name, pages, readstatus = false) {
 
 let read = '';
 
-Book.prototype.info = function () {
+Book.prototype.info = function info() {
   if (this.readstatus) {
     read = 'Read!';
     return read;
@@ -28,7 +24,7 @@ Book.prototype.info = function () {
   read = 'Not Read!';
   return read;
 };
-Book.prototype.toggleStatus = function () {
+Book.prototype.toggleStatus = function toggleStatus() {
   this.readstatus = !this.readstatus;
 };
 
@@ -52,7 +48,7 @@ if (localStorage.length < 1) {
 }
 
 
-const render = function (template, node, container = document.createElement('div')) {
+const render = function render(template, node, container = document.createElement('div')) {
   container.innerHTML = template;
   node.appendChild(container);
 };
@@ -74,18 +70,36 @@ booklist.forEach((book) => {
   render(template, node);
 });
 
+function validateField(inpFiled, errNum) {
+  const errors = document.querySelector(`.error${errNum}`);
+
+  inpFiled.addEventListener('keyup', () => {
+    if (inpFiled.checkValidity()) {
+      inpFiled.classList.remove('border-danger');
+      inpFiled.classList.add('border-success');
+      errors.innerText = '';
+    } else {
+      inpFiled.classList.add('border-danger');
+      errors.innerText = 'This Input field is not valid!';
+    }
+  });
+}
+
+validateField(form.book_title, '1');
+validateField(form.author_name, '2');
+validateField(form.book_pages, '3');
+
 
 button.addEventListener('click', (e) => {
   e.preventDefault();
-
-
-  if (form.book_title.value.length < 3 || form.author_name.value.length < 3) {
-    alert('Sorry Book title and Author name should be at least 3 characters long!');
-  } else {
+  const btitle = form.book_title;
+  const bname = form.author_name;
+  const bpages = form.book_pages;
+  if (btitle.checkValidity() && bname.checkValidity() && bpages.checkValidity()) {
     booklist.push({
-      title: form.book_title.value.trim(),
-      name: form.author_name.value.trim(),
-      pages: form.book_pages.value,
+      title: btitle.value.trim(),
+      name: bname.value.trim(),
+      pages: bpages.value,
       readstatus: form.book_status.value,
     });
     localStorage.setItem('booklist', JSON.stringify(booklist));
@@ -107,7 +121,10 @@ button.addEventListener('click', (e) => {
                 </div>`;
     render(template, node);
     form.reset();
+    formErrors.classList.remove('d-block');
     formcontainer.classList.remove('d-flex');
+  } else {
+    formErrors.classList.add('d-block');
   }
 });
 
@@ -116,11 +133,12 @@ const shelve = document.querySelector('.book-lists');
 shelve.addEventListener('click', (e) => {
   if (e.target.classList.contains('remove')) {
     const text = e.target.parentElement.children[1].innerText;
-    alert('You are about to remove this book!');
+
     booklist = booklist.filter((books) => {
       if (books.title !== text) {
         return books;
       }
+      return retError;
     });
 
 
@@ -131,15 +149,18 @@ shelve.addEventListener('click', (e) => {
   if (e.target.classList.contains('ptl-0')) {
     const text = e.target.parentElement.children[1].innerText;
 
-    booklist.find((books) => {
+    const stateLog = booklist.find((books) => {
       if (books.title === text) {
-        books.readstatus = !books.readstatus;
-        const runbook = new Book(books.title, books.name, books.pages, books.readstatus);
-        e.target.innerText = runbook.info();
-
-        localStorage.setItem('booklist', JSON.stringify(booklist));
+        return books;
       }
+      return retError;
     });
+
+    stateLog.readstatus = !stateLog.readstatus;
+    const runbook = new Book(stateLog.title, stateLog.name, stateLog.pages, stateLog.readstatus);
+    e.target.innerText = runbook.info();
+
+    localStorage.setItem('booklist', JSON.stringify(booklist));
   }
 });
 
@@ -153,9 +174,3 @@ formcontainer.addEventListener('click', (e) => {
 
   e.stopImmediatePropagation();
 });
-
-/* eslint-enable func-names */
-/* eslint-enable camelcase */
-/* eslint-enable no-alert */
-/* eslint-enable array-callback-return */
-/* eslint-enable  consistent-return */

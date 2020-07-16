@@ -4,7 +4,7 @@ const formcontainer = document.querySelector('.form-container');
 const formErrors = document.querySelector('.formErrorMessage');
 
 const form = document.querySelector('form');
-const retError = '';
+let retError = "";
 const button = document.querySelector('button');
 let booklist = [];
 function Book(title, name, pages, readstatus = false) {
@@ -49,6 +49,7 @@ if (localStorage.length < 1) {
 
 
 const render = function render(template, node, container = document.createElement('div')) {
+  container.classList.add('col-md-4')
   container.innerHTML = template;
   node.appendChild(container);
 };
@@ -57,7 +58,7 @@ const render = function render(template, node, container = document.createElemen
 booklist.forEach((book) => {
   const bookexec = new Book(book.title.trim(), book.name.trim(), book.pages, book.readstatus);
   const node = document.getElementById('title');
-  const template = `<div class="card m-4 p-relative text-center">
+  const template = `<div class="card p-relative text-center">
                     <div class="card-body mt-5">
                     <h5 class="card-title">${bookexec.name}</h5>
                     <p class="card-text">${bookexec.title}</p>
@@ -109,7 +110,7 @@ button.addEventListener('click', (e) => {
       form.author_name.value.trim(),
       form.book_pages.value,
       form.book_status.value);
-    const template = `<div class="card text-center m-4">
+    const template = `<div class="card text-center">
                     <div class="card-body mt-5">
                     <h5 class="card-title">${form.author_name.value}</h5>
                     <p class="card-text">${form.book_title.value}</p>
@@ -137,8 +138,9 @@ shelve.addEventListener('click', (e) => {
     booklist = booklist.filter((books) => {
       if (books.title !== text) {
         return books;
+      }else{
+        return retError;
       }
-      return retError;
     });
 
 
@@ -152,8 +154,9 @@ shelve.addEventListener('click', (e) => {
     const stateLog = booklist.find((books) => {
       if (books.title === text) {
         return books;
+      }else{
+        return retError;
       }
-      return retError;
     });
 
     stateLog.readstatus = !stateLog.readstatus;

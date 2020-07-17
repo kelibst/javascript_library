@@ -3,6 +3,7 @@ const addnote = document.querySelector('.add_note');
 const formcontainer = document.querySelector('.form-container');
 const formErrors = document.querySelector('.formErrorMessage');
 
+
 const form = document.querySelector('form');
 const retError = '';
 const button = document.querySelector('button');
@@ -64,8 +65,8 @@ booklist.forEach((book) => {
                     <p class="card-text">${bookexec.title}</p>
                     
                     <p class="card-text text-center"><span class="font-weight-bolder">Number of pages:  ${bookexec.pages}</span></p>
-                    <a href="#" class="btn btn-info ptl-0">${bookexec.info()}</a>
-                    <a href="#" class="btn btn-danger remove w-100">Remove Book</a>
+                    <a href="#" class="btn btn-outline-info ptl-0">${bookexec.info()}</a>
+                    <a href="#" class="btn btn-outline-danger  remove w-100">Remove Book</a>
                     </div>
                 </div>`;
   render(template, node);
@@ -114,10 +115,10 @@ button.addEventListener('click', (e) => {
                     <div class="card-body mt-5">
                     <h5 class="card-title">${form.author_name.value}</h5>
                     <p class="card-text">${form.book_title.value}</p>
-                    <a href="#" class="btn btn-info ptl-0">${AddBook.info()}</a>
+                    <a href="#" class="btn btn-outline-info ptl-0">${AddBook.info()}</a>
                     <p class="card-text text-center"><span class="font-weight-bolder">Number of pages:  ${form.book_pages.value}</span></p>
                   
-                    <a href="#" class="btn btn-danger remove w-100">Remove Book</a>
+                    <a href="#" class="btn btn-outline-danger remove w-100">Remove Book</a>
                     </div>
                 </div>`;
     render(template, node);
@@ -175,3 +176,6 @@ formcontainer.addEventListener('click', (e) => {
 
   e.stopImmediatePropagation();
 });
+
+
+// search functionality

@@ -2,6 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/images/icon.ico" type="image/x-icon">
     <!-- CSS only -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <link rel="stylesheet" href="assets/styles/style.css">
@@ -42,66 +43,60 @@
                     </select>
                   </div>
                 </div>
-                <button type="submit" name="but" id="but" class="btn w-100 my-5 btn-primary">Add Book</button>
+                <button type="submit" name="but" id="but" class="btn w-100 my-5 btn-outline-success">Add Book</button>
               </form>
               <h4 class="text-center text-danger formErrorMessage d-none">Some field's in this form are not valid</h4>
         </div>
 </div>
-    <div class="container my-5 py-5">
-        <h1 class="font-weight-bolder text-center mb-5">Welcome To the Nerd's Library</h1>
-        <!-- output the content of the notes -->
-        <div class="book-lists my-4">
-            <h4 class="font-weight-bolder text-center">List of current Books and their Read Status</h4>
-            <div class="form-row text-center">
-              <div class="col-12 my-5">
-                <a href="#" class="btn btn-success add_note">Add new Note</a>
-              </div>
-           </div>
-            <div id="title" class="row justify-content-center"> </div>
-            
-        </div>
-    </div>
+
+<header class="header-section">
+  <div class="container-lg">
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+      <a class="navbar-brand" href="#"><img src="assets/images/icon.ico" style="width: 50px;" alt=""> Nerd's Library</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+   
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" id="search"  placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" id="searchbtn" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
   </div>
 
-  <div class="modal" id="myModal" > 
-    <div class="modalContent">
-      <span class="closeBtn disable-select">&times;</span>
-
-      <form class="modalForm"> 
-        <div class="form-container" id="title-form">
-          <input type=text name="title" class="input-container" id="title-input" autocomplete="off" required>
-          <label for="title" class="label-container" id="title-label">
-            <span class="span-container" id="title-span">Title</span>
-          </label>
-        </div>
-
-        <div class="form-container" id="author-form">
-          <input type=text name="author" class="input-container" id="author-input" autocomplete="off" required>
-          <label for="author" class="label-container" id="title-label">
-            <span class="span-container" id="author-span">Author</span>
-          </label>
-        </div>
-
-        <div class="form-container" id="pages-form">
-          <input type=number name="pages" class="input-container" id="pages-input" autocomplete="off" required>
-          <label for="pages" class="label-container" id="pages-label">
-            <span class="span-container" id="pages-span">Pages</span>
-          </label>
-        </div>
+  <div class="container-lg my-5 py-5">
+    <div class="hero-content">
+     <div class="col-sm-6">
+      <h1 class="font-weight-bolder display-6 mb-5">Welcome To the Nerd's Library</h1>
+      
+      <h4 class="text ">Your personalize book center.</h4>
+      <p class="text">Don't forget to add books that you have read and those that you intend to read <span class="text-success">:)</span></p>
+   
+        <a href="#" class="btn my-5 btn-outline-success add_note">Add new Note</a>
+     
+     </div>
+    </div>
+      
+  </div>
+</header>
+    
   
-        <div class="read-container" id="read-form">
-          <label>Already read?</label>
-          <input type="checkbox" class="input-container-checkbox" id="read-input">
-        </div>
+  <div class="book-lists container-lg my-4">
+  
+    <div id="title" class="row justify-content-center"> </div>
 
-        <div class="submit-container" id="submit-form">
-          <button type="submit" class="submit-button disable-select">Submit</button>
-        </div>
-      </form>
-    </div>
   </div>
+  <footer class="container-lg mt-5 mb-3">
+    <p class="copyright"><strong>Project by:</strong>  <a href="https://github.com/kelibst" target="_blank" class="btn btn-outline-success border-0">Keli</a> && <a href="https://github.com/Luckyaremu" target="_blank" class="btn  btn-outline-success border-0">Lucky</a></p>
 
+  </footer>
 <!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="assets/scripts/book.js"></script>
 </body>
 </html>
